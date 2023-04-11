@@ -58,6 +58,18 @@ public class AListTest {
             al.put(i, i);
             assertEquals(Integer.valueOf(i), al.get(i));
         }
+
+        // Additional checks contributed by Madisen Cordell,
+        // Spring 2022
+        al.put(8,20);
+
+        for (int i = 0; i < 16; i++) {
+            if (i != 8) {
+                assertEquals(Integer.valueOf(i), al.get(i));
+            } else {
+                assertEquals(Integer.valueOf(20), al.get(8));
+            }
+        }
     }
 
     @Test
@@ -93,6 +105,7 @@ public class AListTest {
             fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
         }
     }
+
 
     @Test
     /** Test append and pop, making sure it grows as needed */

@@ -29,8 +29,8 @@ public class AList<T> {
     // TODO 1
   }
 
-  /* Grows a to double its current size if newSize exceeds a's capacity. Does
-  * nothing if newSize < a.length.  Grow the array by allocating a new array
+  /* Grows a to double its current capacity if newSize exceeds a's capacity. Does
+  * nothing if newSize <= a.length.  Grow the array by allocating a new array
   * and copying the old array's contents into the new one. This does *not*
   * change the AList's size. */
   protected void growIfNeeded(int newSize) {
