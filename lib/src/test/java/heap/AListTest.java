@@ -45,6 +45,11 @@ public class AListTest {
         al.resize(32);
         assertEquals(32, al.size());
         assertEquals(32, al.getCap());
+
+        // Test for multiple doublings at once contributed by Chris Holt, Spring 23
+        al.resize(100);
+        assertEquals(100, al.size());
+        assertEquals(128, al.getCap());
     }
 
 
@@ -79,30 +84,30 @@ public class AListTest {
 
         try {
             al.get(32); fail("Didn't throw an exception");
-        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
+        } catch (IndexOutOfBoundsException e) { // supposed to happen
         } catch (Throwable e){
-            fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+            fail("Threw something other than IndexOutOfBoundsException: " + e);
         }
 
         try {
             al.get(-1); fail("Didn't throw an exception");
-        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
+        } catch (IndexOutOfBoundsException e) { // supposed to happen
         } catch (Throwable e){
-            fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+            fail("Threw something other than IndexOutOfBoundsException: " + e);
         }
 
         try {
             al.put(-1, 4); fail("Didn't throw an exception");
-        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
+        } catch (IndexOutOfBoundsException e) { // supposed to happen
         } catch (Throwable e){
-            fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+            fail("Threw something other than IndexOutOfBoundsException: " + e);
         }
 
         try {
             al.put(16, 4); fail("Didn't throw an exception");
-        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
+        } catch (IndexOutOfBoundsException e) { // supposed to happen
         } catch (Throwable e){
-            fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+            fail("Threw something other than IndexOutOfBoundsException: " + e);
         }
     }
 
@@ -125,10 +130,10 @@ public class AListTest {
             try {
                 al.get(i);
                 fail("AList didn't throw an exception on indexing removed element.");
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 // This is supposed to happen
             } catch (Throwable e){
-                fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+                fail("Threw something other than IndexOutOfBoundsException: " + e);
             }
         }
         assertEquals(16, al.getCap());
